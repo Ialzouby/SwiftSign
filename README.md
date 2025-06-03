@@ -69,50 +69,6 @@ root
 
 ---
 
-## Scripts
-```json
-"scripts": {
-  "start": "node index.js",
-  "dev":   "nodemon index.js"
-}
-```
-Use **`npm run dev`** during development for auto‑reload (requires `nodemon`).
-
----
-
-## API Reference
-### POST `/api/sign`
-Body ➜ `multipart/form-data`
-| Field | Type | Description |
-|-------|------|-------------|
-| `file` | PDF | Document to be signed. |
-| `mode` | string | `"auto"` (autodetect fields) or `"manual"` (no AI). |
-
-Response
-```jsonc
-{
-  "envelopeId": "env_12345",
-  "fields": [
-    { "type": "signature", "page": 1, "x": 0.5, "y": 0.8 }
-  ]
-}
-```
-
-### POST `/api/audit`
-Saves signer event (who, what, when, IP).
-```jsonc
-{
-  "envelopeId": "env_12345",
-  "event": "signed",
-  "by": "alice@example.com",
-  "timestamp": "2025‑06‑02T12:34:56Z",
-  "ip": "203.0.113.42"
-}
-```
-Returns `200 { message: "Event logged." }`
-
----
-
 ### Static Asset Pipeline
 ```mermaid
 graph LR
